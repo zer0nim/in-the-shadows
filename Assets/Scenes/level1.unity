@@ -936,3 +936,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   validRot: {x: 205, y: 70, z: 70}
   validPos: {x: 0, y: 0, z: 0}
+--- !u!65 &1550704866
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1550704864}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.8366036, y: 6.623203, z: 3.7145028}
+  m_Center: {x: 0.34240007, y: 0.10640058, z: -0.0009461783}

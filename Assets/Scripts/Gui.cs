@@ -17,7 +17,11 @@ public class Gui : MonoBehaviour {
 	}
 
 	void Update () {
-		validPercRT.anchorMin = new Vector2(1 - PuzzleManager.instance.validPerc, 0);
-		validPercImg.color = Color.Lerp(coldColor, hotColor, PuzzleManager.instance.validPerc);
+		if (PuzzleManager.instance.finished)
+			validPercRT.transform.parent.gameObject.active = false;
+		else {
+			validPercRT.anchorMin = new Vector2(1 - PuzzleManager.instance.validPerc, 0);
+			validPercImg.color = Color.Lerp(coldColor, hotColor, PuzzleManager.instance.validPerc);
+		}
 	}
 }

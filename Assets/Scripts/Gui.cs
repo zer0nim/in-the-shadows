@@ -18,7 +18,7 @@ public class Gui : MonoBehaviour {
 
 	void Update () {
 		if (PuzzleManager.instance.finished)
-			validPercRT.transform.parent.gameObject.active = false;
+			validPercRT.transform.parent.gameObject.SetActive(false);
 		else {
 			validPercRT.anchorMin = new Vector2(1 - PuzzleManager.instance.validPerc, 0);
 			validPercImg.color = Color.Lerp(coldColor, hotColor, PuzzleManager.instance.validPerc);

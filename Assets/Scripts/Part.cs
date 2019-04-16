@@ -6,10 +6,23 @@ public class Part : MonoBehaviour {
 	public Vector3 validRot, validPos;
 	public KeyCode verticalKey = KeyCode.LeftControl;
 	public KeyCode moveKey = KeyCode.LeftShift;
-	public int difficulty = 3;
+	public int	difficulty = 3;
+	[Header("v-- left, top, right, bot => in % of windows --v")]
+	// windows percentage where we are allowed to move
+	public Vector4	moveZone = new Vector4(.2f, .2f, .2f, .2f);
 
+	private Vector4 moveZoneCoord;
 	private Vector3 screenSpace, offset;
 	private Vector2 mousePerc;
+
+	void Start () {
+		moveZoneCoord = new Vector4(
+			Screen.width * moveZone.x,
+			Screen.height - Screen.height * moveZone.y,
+			Screen.width - Screen.width * moveZone.z,
+			Screen.height * moveZone.w
+		);
+	}
 
 	void Update () {
 		if (PuzzleManager.instance.finished)
@@ -45,6 +58,14 @@ public class Part : MonoBehaviour {
 			if (Input.GetKey(moveKey) && difficulty >= 3) {
 				// keep track of the mouse position
 				var curScreenSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenSpace.z);
+
+				// limit the moves to moveZone
+				curScreenSpace.x = curScreenSpace.x < moveZoneCoord.x ? moveZoneCoord.x : curScreenSpace.x;
+				curScreenSpace.x = curScreenSpace.x > moveZoneCoord.z ? moveZoneCoord.z : curScreenSpace.x;
+				curScreenSpace.y = curScreenSpace.y > moveZoneCoord.y ? moveZoneCoord.y : curScreenSpace.y;
+				curScreenSpace.y = curScreenSpace.y < moveZoneCoord.w ? moveZoneCoord.w : curScreenSpace.y;
+				print(curScreenSpace);
+
 				// convert the screen mouse position to world point and adjust with offset
 				var curPosition = Camera.main.ScreenToWorldPoint(curScreenSpace) + offset;
 				transform.position = curPosition;

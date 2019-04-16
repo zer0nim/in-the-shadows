@@ -1187,6 +1187,7 @@ MonoBehaviour:
   verticalKey: 306
   moveKey: 304
   difficulty: 3
+  moveZone: {x: 0.2, y: 0.2, z: 0.2, w: 0.2}
 --- !u!65 &1550704866
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/StoryMode.unity
     guid: d7be16bc009b84f42b858b33f7b1c45f
   - enabled: 1
-    path: Assets/Scenes/Levels/Level1.unity
-    guid: 4319ff0caf95a4583a3ba3fd9f671a1d
-  - enabled: 1
-    path: Assets/Scenes/Levels/Level2.unity
+    path: Assets/Scenes/Levels/Flat.unity
     guid: 75eaa7dcb90f54913a2bcfbd378cf2d1
+  - enabled: 1
+    path: Assets/Scenes/Levels/Php.unity
+    guid: 4319ff0caf95a4583a3ba3fd9f671a1d

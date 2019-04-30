@@ -13,7 +13,7 @@ public class PuzzleManager : MonoBehaviour {
 	public bool finished { get ; private set ;}
 	[HideInInspector]
 	public float validPerc;
-	private List<float> validsParts;
+	private List<float> partsDiffAngles;
 
 	void Awake () {
 		if (instance == null)
@@ -22,7 +22,7 @@ public class PuzzleManager : MonoBehaviour {
 			Destroy(gameObject);
 
 		finished = false;
-		validsParts = Enumerable.Repeat(180f, parts.Count).ToList();
+		partsDiffAngles = Enumerable.Repeat(180f, parts.Count).ToList();
 	}
 
 	void Update ()
@@ -30,9 +30,9 @@ public class PuzzleManager : MonoBehaviour {
 		if (!finished) {
 			// Store angle betwwen rotations quaternion
 			for (int i = 0; i < parts.Count; ++i)
-				validsParts[i] = Quaternion.Angle(parts[i].gameObject.transform.rotation, Quaternion.Euler(parts[i].validRot));
+				partsDiffAngles[i] = Quaternion.Angle(parts[i].gameObject.transform.rotation, Quaternion.Euler(parts[i].validRot));
 
-			validPerc = 1 - validsParts.Max() / 180;
+			validPerc = 1 - partsDiffAngles.Max() / 180;
 
 			if (validPerc > minValidPerc)
 				finished = true;

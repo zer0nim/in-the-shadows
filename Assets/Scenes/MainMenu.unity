@@ -238,6 +238,11 @@ MonoBehaviour:
     link: {fileID: 2800000, guid: a4c7db7ce1f1b430ea62338ad6707a84, type: 3}
   levelDoneMaterial: {fileID: 2100000, guid: bac541a61ac604683b9c9b1e388d5a85, type: 2}
   levelTodoMaterial: {fileID: 2100000, guid: 625cd418e9b03471ab6b26e6f22da0fa, type: 2}
+  levels:
+  - {fileID: 0}
+  - {fileID: 0}
+  levelProgess: 
+  currentLevel: 0
 --- !u!4 &466871409
 Transform:
   m_ObjectHideFlags: 0

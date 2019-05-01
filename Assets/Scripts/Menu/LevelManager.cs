@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour {
 
 			LevelInfo levelInfo = levelBoxInst.GetComponent<LevelInfo>();
 			levelInfo.sceneName = levels[i];
-			levelInfo.done = levelProgess[i];
+			levelInfo.status = levelProgess[i];
 			levelInfo.Init();
 
 			levelBoxInst.transform.parent = transform;

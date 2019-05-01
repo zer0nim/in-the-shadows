@@ -14,7 +14,7 @@ public class GameManager : CursorManager {
 	// public List
 	public string				levelScenePrefix = "Levels";
 	[HideInInspector]
-	public List<bool>			levelProgess;
+	public List<LevelStatus>	levelProgess;
 	public int					currentLevel;
 	public List<string> 		levels { get; private set; }
 	void Awake () {
@@ -49,7 +49,8 @@ public class GameManager : CursorManager {
 			levelProgess = save.levelProgess;
 		} else {
 			// init levelProgess
-			levelProgess = Enumerable.Repeat(false, levels.Count).ToList();
+			levelProgess = Enumerable.Repeat(LevelStatus.Locked, levels.Count).ToList();
+			levelProgess[0] = LevelStatus.Unlocked;
 		}
 	}
 

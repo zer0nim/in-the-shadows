@@ -19,7 +19,12 @@ public class LevelInfo : HoverCursor {
 	}
 
 	public void OnClick () {
-		SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+		// SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+		if (done)
+			Tools.SetMaterialAlpha(GetComponent<Renderer>(), 1);
+		else
+			Tools.SetMaterialAlpha(GetComponent<Renderer>(), .4f);
+		done = !done;
 	}
 
 	void OnMouseDown () { OnClick(); }

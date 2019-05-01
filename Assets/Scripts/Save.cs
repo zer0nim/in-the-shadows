@@ -4,5 +4,5 @@ using UnityEngine;
 
 [System.Serializable]
 public class Save {
-	public List<bool> levelProgess;
+	public List<LevelStatus> levelProgess;
 }

@@ -20,10 +20,12 @@ public class LevelInfo : HoverCursor {
 		GetComponent<Renderer>().material = status == LevelStatus.Done ? GameManager.instance.levelDoneMaterial : GameManager.instance.levelTodoMaterial;
         if (status == LevelStatus.Locked)
             Tools.SetMaterialAlpha(GetComponent<Renderer>(), .4f);
+		active = status != LevelStatus.Locked;
 	}
 
 	public void OnClick () {
-		SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+		if (active)
+			SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
 	}
 
 	void OnMouseDown () { OnClick(); }

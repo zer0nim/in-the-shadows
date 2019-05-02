@@ -8,6 +8,7 @@ using UnityEngine;
 public class MainMenu : HoverCursor {
 	public void OnStoryMode () {
 		SceneManager.LoadScene("StoryMode", LoadSceneMode.Single);
+		GameManager.instance.SetCursor(CursorType.normal);
 	}
 
 	public void OnTestMode () {

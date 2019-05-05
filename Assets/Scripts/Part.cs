@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Part : MonoBehaviour {
 	public Vector3 validRot, validPos;
@@ -10,6 +11,7 @@ public class Part : MonoBehaviour {
 	[Header("v-- left, top, right, bot => in % of windows --v")]
 	// windows percentage where we are allowed to move
 	public Vector4	moveZone = new Vector4(.2f, .2f, .2f, .2f);
+	public bool	winAnimFinished = false;
 
 	private Vector4 moveZoneCoord;
 	private Vector3 screenSpace, offset;
@@ -28,7 +30,9 @@ public class Part : MonoBehaviour {
 		if (PuzzleManager.instance.finished)
 		{
 			transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(validRot),
-			   PuzzleManager.instance.validAnimSpeed * Time.deltaTime);
+			PuzzleManager.instance.validAnimSpeed * Time.deltaTime);
+			if (transform.rotation == Quaternion.Euler(validRot))
+				winAnimFinished = true;
 		}
 	}
 
@@ -41,7 +45,7 @@ public class Part : MonoBehaviour {
 	}
 
 	void OnMouseDown () {
-		if (!PuzzleManager.instance.finished) {
+		if (!PuzzleManager.instance.finished && !EventSystem.current.IsPointerOverGameObject()) {
 			screenSpace = Camera.main.WorldToScreenPoint(transform.position);
 			// calculate any difference between the puzzle world position and the mouses Screen position converted to a world point
 			offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y, screenSpace.z));
@@ -51,7 +55,7 @@ public class Part : MonoBehaviour {
 	}
 
 	void OnMouseDrag () {
-		if (!PuzzleManager.instance.finished) {
+		if (!PuzzleManager.instance.finished && !EventSystem.current.IsPointerOverGameObject()) {
 			Vector2 newMousePerc = CalcMousePerc();
 
 			// move mode
@@ -64,7 +68,6 @@ public class Part : MonoBehaviour {
 				curScreenSpace.x = curScreenSpace.x > moveZoneCoord.z ? moveZoneCoord.z : curScreenSpace.x;
 				curScreenSpace.y = curScreenSpace.y > moveZoneCoord.y ? moveZoneCoord.y : curScreenSpace.y;
 				curScreenSpace.y = curScreenSpace.y < moveZoneCoord.w ? moveZoneCoord.w : curScreenSpace.y;
-				print(curScreenSpace);
 
 				// convert the screen mouse position to world point and adjust with offset
 				var curPosition = Camera.main.ScreenToWorldPoint(curScreenSpace) + offset;

@@ -13,6 +13,8 @@ public class PuzzleManager : MonoBehaviour {
 	public bool finished { get ; private set ;}
 	[HideInInspector]
 	public float validPerc;
+	[HideInInspector]
+	public bool allFinished { get ; private set ;}
 	private List<float> partsDiffAngles;
 
 	void Awake () {
@@ -22,6 +24,7 @@ public class PuzzleManager : MonoBehaviour {
 			Destroy(gameObject);
 
 		finished = false;
+		allFinished = false;
 		partsDiffAngles = Enumerable.Repeat(180f, parts.Count).ToList();
 	}
 
@@ -36,6 +39,13 @@ public class PuzzleManager : MonoBehaviour {
 
 			if (validPerc > minValidPerc)
 				finished = true;
+		} else if (!allFinished) {
+			allFinished = true;
+			foreach (Part part in parts)
+				if (!part.winAnimFinished)
+					allFinished = false;
+			if (allFinished)
+				Gui.instance.setMenu(true);
 		}
 	}
 }

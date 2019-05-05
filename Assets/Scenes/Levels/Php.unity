@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38073996, b: 0.35872698, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -158,6 +158,54 @@ MonoBehaviour:
   minValidPerc: 0.95
   validAnimSpeed: 10
   validPerc: 0
+--- !u!1 &773816649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 773816651}
+  - component: {fileID: 773816650}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &773816650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 773816649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a8cb7b1da3f344c4a9734682c9de653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cursors:
+    normal: {fileID: 2800000, guid: 4c249413521944297b3fc73a639ec564, type: 3}
+    link: {fileID: 2800000, guid: a4c7db7ce1f1b430ea62338ad6707a84, type: 3}
+  levelDoneMaterial: {fileID: 2100000, guid: bac541a61ac604683b9c9b1e388d5a85, type: 2}
+  levelTodoMaterial: {fileID: 2100000, guid: 625cd418e9b03471ab6b26e6f22da0fa, type: 2}
+  levelScenePrefix: Levels
+  levelProgess: 
+  currentLevel: 0
+--- !u!4 &773816651
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 773816649}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 243.54688, y: 291.92188, z: 54.125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1550704863
 Prefab:
   m_ObjectHideFlags: 0
@@ -285,6 +333,7 @@ MonoBehaviour:
   moveKey: 304
   difficulty: 3
   moveZone: {x: 0.2, y: 0.2, z: 0.2, w: 0.2}
+  winAnimFinished: 0
 --- !u!65 &1550704866
 BoxCollider:
   m_ObjectHideFlags: 0

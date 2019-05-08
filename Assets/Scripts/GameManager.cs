@@ -51,12 +51,14 @@ public class GameManager : CursorManager {
 			FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
 			save = (Save)bf.Deserialize(file);
 			file.Close();
-		} else {
-			// init levelProgess
-			save.levelProgess = Enumerable.Repeat(LevelStatus.Locked, levels.Count).ToList();
-			save.levelProgess[0] = LevelStatus.Unlocked;
-			save.animationDone = Enumerable.Repeat(true, levels.Count).ToList();
-		}
+		} else
+			initProgress();
+	}
+
+	public void initProgress() {
+		save.levelProgess = Enumerable.Repeat(LevelStatus.Locked, levels.Count).ToList();
+		save.levelProgess[0] = LevelStatus.Unlocked;
+		save.animationDone = Enumerable.Repeat(true, levels.Count).ToList();
 	}
 
 	public void SaveGame () {

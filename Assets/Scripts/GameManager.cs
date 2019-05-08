@@ -6,7 +6,6 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class GameManager : CursorManager {
 	public static GameManager	instance = null;
@@ -33,11 +32,12 @@ public class GameManager : CursorManager {
 
 		// Get levels scenes
 		levels = new List<string>();
-		foreach(EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
+		int sceneCount = UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings;
+		for (int i = 0; i < sceneCount; i++)
 		{
-			string sceneName = Path.GetFileNameWithoutExtension(scene.path);
-
-			if (scene.enabled && scene.path.Contains(levelScenePrefix))
+			string path = UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(i);
+			string sceneName = Path.GetFileNameWithoutExtension(path);
+			if (path.Contains(levelScenePrefix))
 				levels.Add(sceneName);
 		}
 

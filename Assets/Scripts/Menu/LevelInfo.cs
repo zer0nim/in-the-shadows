@@ -13,18 +13,32 @@ public class LevelInfo : HoverCursor {
 	public LevelStatus	status = LevelStatus.Locked;
 	public float		lockedAlpha = .4f;
 	public Animator		animator;
+	public bool			animationDone = false;
 	void Awake () {
 		Init();
 	}
 
 	public void Init () {
 		textComponent.text = sceneName;
-		SetMaterial(status == LevelStatus.Done ? 1 : 0);
+		SetMaterial(status == LevelStatus.Done && animationDone ? 1 : 0);
 		active = status != LevelStatus.Locked;
 		Tools.SetMaterialAlpha(GetComponent<Renderer>(), active ? 1 : lockedAlpha);
-		animator.SetBool("Unlocked", active);
+
+		if (!animationDone) {
+			if (status == LevelStatus.Unlocked)
+				animator.SetTrigger("Unlock");
+			else if (status == LevelStatus.Done) {
+				animator.SetBool("Unlocked", active);
+				animator.SetTrigger("Done");
+			}
+		} else
+			animator.SetBool("Unlocked", active);
 	}
 
+	// Used to set "Unlocked" from animation event, int used because bool is not suported...
+	public void SetUnlocked(int active) {
+		animator.SetBool("Unlocked", active == 1);
+	}
 	// Used to set material alpha from animation event
 	public void SetMaterialAlpha(float alpha) {
 		Tools.SetMaterialAlpha(GetComponent<Renderer>(), alpha);

@@ -14,10 +14,10 @@ public class GameManager : CursorManager {
 	// public List
 	public string				levelScenePrefix = "Levels";
 	[HideInInspector]
-	public List<LevelStatus>	levelProgess;
-	public int					currentLevel;
+	public Save					save = new Save();
 	[HideInInspector]
 	public string				lastLoadedScene;
+	public bool					testMode = false;
 
 	public List<string> 		levels { get; private set; }
 	void Awake () {
@@ -49,23 +49,37 @@ public class GameManager : CursorManager {
 		if (File.Exists(Application.persistentDataPath + "/gamesave.save")) {
 			BinaryFormatter bf = new BinaryFormatter();
 			FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
-			Save save = (Save)bf.Deserialize(file);
+			save = (Save)bf.Deserialize(file);
 			file.Close();
-			levelProgess = save.levelProgess;
 		} else {
 			// init levelProgess
-			levelProgess = Enumerable.Repeat(LevelStatus.Locked, levels.Count).ToList();
-			levelProgess[0] = LevelStatus.Unlocked;
+			save.levelProgess = Enumerable.Repeat(LevelStatus.Locked, levels.Count).ToList();
+			save.levelProgess[0] = LevelStatus.Unlocked;
+			save.animationDone = Enumerable.Repeat(true, levels.Count).ToList();
 		}
 	}
 
 	public void SaveGame () {
-		Save save = new Save();
-		save.levelProgess = levelProgess;
-
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
 		bf.Serialize(file, save);
 		file.Close();
+	}
+
+	// Save progess when new level is done
+	// Return next level name or null if this is the last one
+	public string LevelDone (string name) {
+		int i = GameManager.instance.levels.FindIndex(x => x == name);
+		GameManager.instance.save.animationDone[i] = false;
+		GameManager.instance.save.levelProgess[i] = LevelStatus.Done;
+		// if there is a next level
+		if (i + 1 < GameManager.instance.levels.Count) {
+			GameManager.instance.save.animationDone[i + 1] = false;
+			GameManager.instance.save.levelProgess[i + 1] = LevelStatus.Unlocked;
+			SaveGame();
+			return (GameManager.instance.levels[i + 1]);
+		}
+		SaveGame();
+		return null;
 	}
 }

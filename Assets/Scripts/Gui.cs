@@ -46,7 +46,8 @@ public class Gui : HoverCursor {
 
 	public void setMenu (bool open) {
 		title.text = PuzzleManager.instance.finished ? winTitle : normalTitle;
-		quitNextButton.text = PuzzleManager.instance.finished ? nextText : quitText;
+		bool isNext = PuzzleManager.instance.finished && PuzzleManager.instance.nextLvl != null;
+		quitNextButton.text = isNext ? nextText : quitText;
 		pauseOpened = open;
 		pausePanel.SetActive(pauseOpened);
 	}
@@ -55,14 +56,14 @@ public class Gui : HoverCursor {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 	public void onQuitNextButton () {
-		print("onQuitNextButton");
-		if (PuzzleManager.instance.finished)
+		bool isNext = PuzzleManager.instance.finished && PuzzleManager.instance.nextLvl != null;
+		if (isNext)
 			onNext();
 		else
 			onQuit();
 	}
 	void onNext () {
-		print("onNext");
+		SceneManager.LoadScene(PuzzleManager.instance.nextLvl);
 	}
 	void onQuit () {
 		SceneManager.LoadScene(GameManager.instance.lastLoadedScene);

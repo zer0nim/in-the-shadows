@@ -22,11 +22,14 @@ public class LevelManager : MonoBehaviour {
 
 			LevelInfo levelInfo = levelBoxInst.GetComponent<LevelInfo>();
 			levelInfo.sceneName = levels[i];
-			levelInfo.status = GameManager.instance.levelProgess[i];
+			levelInfo.status = GameManager.instance.save.levelProgess[i];
+			levelInfo.animationDone = GameManager.instance.save.animationDone[i];
+			GameManager.instance.save.animationDone[i] = true;
 			levelInfo.Init();
 
 			levelBoxInst.transform.parent = transform;
 		}
+		GameManager.instance.SaveGame();
 	}
 
 	void Update () {

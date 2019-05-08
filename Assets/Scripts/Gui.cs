@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Gui : HoverCursor {
 	public static Gui instance = null;
@@ -51,7 +52,7 @@ public class Gui : HoverCursor {
 	}
 
 	public void OnReplayButton () {
-		print("onReloadButton");
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 	public void onQuitNextButton () {
 		print("onQuitNextButton");
@@ -64,6 +65,6 @@ public class Gui : HoverCursor {
 		print("onNext");
 	}
 	void onQuit () {
-		print("onQuit");
+		SceneManager.LoadScene(GameManager.instance.lastLoadedScene);
 	}
 }

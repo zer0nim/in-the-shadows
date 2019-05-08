@@ -429,9 +429,11 @@ MonoBehaviour:
   levelDoneMaterial: {fileID: 2100000, guid: bac541a61ac604683b9c9b1e388d5a85, type: 2}
   levelTodoMaterial: {fileID: 2100000, guid: 625cd418e9b03471ab6b26e6f22da0fa, type: 2}
   levelScenePrefix: Levels
-  levelProgess: 
-  currentLevel: 0
+  save:
+    levelProgess: 
+    animationDone: 
   lastLoadedScene: 
+  testMode: 0
 --- !u!4 &1277503411
 Transform:
   m_ObjectHideFlags: 0

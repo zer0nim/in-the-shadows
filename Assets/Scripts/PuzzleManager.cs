@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class PuzzleManager : MonoBehaviour {
 	public static PuzzleManager instance = null;
@@ -15,6 +16,8 @@ public class PuzzleManager : MonoBehaviour {
 	public float validPerc;
 	[HideInInspector]
 	public bool allFinished { get ; private set ;}
+	[HideInInspector]
+	public string nextLvl { get ; private set ;}
 	private List<float> partsDiffAngles;
 
 	void Awake () {
@@ -28,17 +31,22 @@ public class PuzzleManager : MonoBehaviour {
 		partsDiffAngles = Enumerable.Repeat(180f, parts.Count).ToList();
 	}
 
-	void Update ()
-	{
+	void Update () {
 		if (!finished) {
 			// Store angle betwwen rotations quaternion
 			for (int i = 0; i < parts.Count; ++i)
-				partsDiffAngles[i] = Quaternion.Angle(parts[i].gameObject.transform.rotation, Quaternion.Euler(parts[i].validRot));
+				partsDiffAngles[i] = Quaternion.Angle(
+				  parts[i].gameObject.transform.rotation, Quaternion.Euler(parts[i].validRot));
 
 			validPerc = 1 - partsDiffAngles.Max() / 180;
 
-			if (validPerc > minValidPerc)
+			if (validPerc > minValidPerc) {
 				finished = true;
+				if (!GameManager.instance.testMode) {
+					// Save progess
+					nextLvl = GameManager.instance.LevelDone(SceneManager.GetActiveScene().name);
+				}
+			}
 		} else if (!allFinished) {
 			allFinished = true;
 			foreach (Part part in parts)

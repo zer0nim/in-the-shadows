@@ -279,10 +279,17 @@ AnimationClip:
     floatParameter: 0.94
     intParameter: 0
     messageOptions: 0
-  - time: 1
+  - time: 0.99444443
     functionName: SetMaterialAlpha
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 1
     intParameter: 0
+    messageOptions: 0
+  - time: 0.99444443
+    functionName: SetUnlocked
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
     messageOptions: 0

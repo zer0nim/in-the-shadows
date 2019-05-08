@@ -35,13 +35,13 @@ public class LevelInfo : HoverCursor {
 	}
 
 	public void OnClick () {
-		if (active)
-			animator.SetTrigger("Done");			// SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
-		else
-			animator.SetTrigger("Unlock");
+		if (active) {
+			GameManager.instance.lastLoadedScene = SceneManager.GetActiveScene().name;
+			SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+		}
 	}
 
-	void OnMouseDown () { OnClick(); }
+	void OnMouseUpAsButton () { OnClick(); }
 	void OnMouseOver () { OnHover(); }
 	void OnMouseExit () { OnHoverAway(); }
 }

@@ -13,7 +13,6 @@ public class LevelManager : MonoBehaviour {
 	private float xVel = 0;
 	void Awake () {
 		var levels = GameManager.instance.levels;
-		var levelProgess = GameManager.instance.levelProgess;
 
 		Vector3 pos = Vector3.zero;
 		for (int i = 0; i < levels.Count; i++)
@@ -23,7 +22,7 @@ public class LevelManager : MonoBehaviour {
 
 			LevelInfo levelInfo = levelBoxInst.GetComponent<LevelInfo>();
 			levelInfo.sceneName = levels[i];
-			levelInfo.status = levelProgess[i];
+			levelInfo.status = GameManager.instance.levelProgess[i];
 			levelInfo.Init();
 
 			levelBoxInst.transform.parent = transform;
@@ -31,6 +30,10 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	void Update () {
+		menuNavigation();
+	}
+
+	void menuNavigation () {
 		float mousePerc = Input.mousePosition.x / Screen.width;
 		mousePerc = mousePerc < 0 ? 0 : (mousePerc > 1 ? 1 : mousePerc);
 

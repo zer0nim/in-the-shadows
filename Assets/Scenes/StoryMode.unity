@@ -431,6 +431,7 @@ MonoBehaviour:
   levelScenePrefix: Levels
   levelProgess: 
   currentLevel: 0
+  lastLoadedScene: 
 --- !u!4 &1277503411
 Transform:
   m_ObjectHideFlags: 0

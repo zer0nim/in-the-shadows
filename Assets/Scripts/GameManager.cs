@@ -16,6 +16,9 @@ public class GameManager : CursorManager {
 	[HideInInspector]
 	public List<LevelStatus>	levelProgess;
 	public int					currentLevel;
+	[HideInInspector]
+	public string				lastLoadedScene;
+
 	public List<string> 		levels { get; private set; }
 	void Awake () {
 		if (instance == null)
@@ -25,6 +28,8 @@ public class GameManager : CursorManager {
 
 		// Set this to not be destroyed when reloading scene
 		DontDestroyOnLoad(gameObject);
+
+		lastLoadedScene = Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(0));
 
 		// Get levels scenes
 		levels = new List<string>();

@@ -238,11 +238,12 @@ MonoBehaviour:
     link: {fileID: 2800000, guid: a4c7db7ce1f1b430ea62338ad6707a84, type: 3}
   levelDoneMaterial: {fileID: 2100000, guid: bac541a61ac604683b9c9b1e388d5a85, type: 2}
   levelTodoMaterial: {fileID: 2100000, guid: 625cd418e9b03471ab6b26e6f22da0fa, type: 2}
-  levels:
-  - {fileID: 0}
-  - {fileID: 0}
-  levelProgess: 
-  currentLevel: 0
+  levelScenePrefix: Levels
+  save:
+    levelProgess: 
+    animationDone: 
+  lastLoadedScene: 
+  testMode: 0
 --- !u!4 &466871409
 Transform:
   m_ObjectHideFlags: 0
@@ -311,6 +312,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 24b94d6263a3f42f4b25ce98df1417e7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c0293e3ebe2da4492b06757c56913c44, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24b94d6263a3f42f4b25ce98df1417e7, type: 3}
   m_IsPrefabParent: 0
@@ -813,7 +818,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
-    m_MaxSize: 100
+    m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1123,6 +1128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c371ada0372d44a78fed1324d2034c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 1
 --- !u!1 &1176512328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,10 +1313,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

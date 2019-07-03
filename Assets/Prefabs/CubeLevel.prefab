@@ -296,6 +296,7 @@ MonoBehaviour:
   status: 0
   lockedAlpha: 0.4
   animator: {fileID: 95454582737455516}
+  animationDone: 0
 --- !u!114 &114229308348609546
 MonoBehaviour:
   m_ObjectHideFlags: 1

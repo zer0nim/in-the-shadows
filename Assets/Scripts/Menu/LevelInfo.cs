@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public enum LevelStatus { Locked, Unlocked, Done }
 
-public class LevelInfo : HoverCursor {
+public class LevelInfo : HoverCursor, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler {
 	public string		sceneName;
 	public Text			textComponent;
 	public Image		textFillBox;
@@ -48,14 +49,18 @@ public class LevelInfo : HoverCursor {
 		GetComponent<Renderer>().material = done == 1 ? GameManager.instance.levelDoneMaterial : GameManager.instance.levelTodoMaterial;
 	}
 
-	public void OnClick () {
+	public void OnPointerClick (PointerEventData data) {
 		if (active) {
 			GameManager.instance.lastLoadedScene = SceneManager.GetActiveScene().name;
 			SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
 		}
 	}
 
-	void OnMouseUpAsButton () { OnClick(); }
-	void OnMouseOver () { OnHover(); }
-	void OnMouseExit () { OnHoverAway(); }
+	public void OnTitleClick () { OnPointerClick(null); }
+	public void OnPointerEnter(PointerEventData pointerEventData) {
+		OnHover();
+	}
+	public void OnPointerExit(PointerEventData pointerEventData) {
+		OnHoverAway();
+	}
 }

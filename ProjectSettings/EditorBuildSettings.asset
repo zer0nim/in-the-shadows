@@ -17,3 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Flat.unity
     guid: 75eaa7dcb90f54913a2bcfbd378cf2d1
+  - enabled: 1
+    path: Assets/Scenes/Levels/Genious.unity
+    guid: 0a01e9df3e7af0b43843ec15224b1bda
+  - enabled: 1
+    path: Assets/Scenes/Levels/Life.unity
+    guid: 1057dc22127a1d448b3ee71c04d48342
+  - enabled: 1
+    path: Assets/Scenes/Levels/See you.unity
+    guid: 2a99debfb85a91c4bb76e61bc6a9c5f5

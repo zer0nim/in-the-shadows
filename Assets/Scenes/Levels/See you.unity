@@ -290,7 +290,9 @@ MonoBehaviour:
   validPos: {x: 0, y: 0, z: 0}
   verticalKey: 306
   moveKey: 304
-  difficulty: 3
+  difficulty: 2
+  moveHori: 0
+  moveVert: 0
   moveZone: {x: 0.2, y: 0.2, z: 0.2, w: 0.2}
   winAnimFinished: 0
 --- !u!65 &1045667179

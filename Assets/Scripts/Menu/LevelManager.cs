@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 	public GameObject	levelBox;
@@ -9,6 +10,7 @@ public class LevelManager : MonoBehaviour {
 	public float		scrollWidth = .2f;
 	public float		minScrollSpeed = 2;
 	public float		maxScrollSpeed = 8;
+	public KeyCode		mainMenuKey = KeyCode.Escape;
 
 	private float xVel = 0;
 	void Awake () {
@@ -34,6 +36,8 @@ public class LevelManager : MonoBehaviour {
 
 	void Update () {
 		menuNavigation();
+		if (Input.GetKeyDown(mainMenuKey))
+			SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
 	}
 
 	void menuNavigation () {

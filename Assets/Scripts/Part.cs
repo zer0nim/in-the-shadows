@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Part : MonoBehaviour {
-	public Vector3 validRot, validPos;
+	public Vector3 validRot;
+	public Transform validPos;
 	public KeyCode verticalKey = KeyCode.LeftControl;
 	public KeyCode moveKey = KeyCode.LeftShift;
 	public int	difficulty = 3;

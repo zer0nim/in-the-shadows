@@ -29,8 +29,10 @@ public class PuzzleManager : MonoBehaviour {
 	void Awake () {
 		if (instance == null)
 			instance = this;
-		else if (instance != this)
+		else if (instance != this) {
 			Destroy(gameObject);
+			return;
+		}
 
 		finished = false;
 		allFinished = false;
@@ -85,8 +87,10 @@ public class PuzzleManager : MonoBehaviour {
 			foreach (Part part in parts)
 				if (!part.winAnimFinished)
 					allFinished = false;
-			if (allFinished)
+			if (allFinished) {
 				Gui.instance.setMenu(true);
+				AudioManager.instance.Play("success");
+			}
 		}
 	}
 }

@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour {
 	void Awake () {
 		var levels = GameManager.instance.levels;
 
+		bool playSuccess = false;
 		Vector3 pos = Vector3.zero;
 		for (int i = 0; i < levels.Count; i++)
 		{
@@ -26,11 +27,19 @@ public class LevelManager : MonoBehaviour {
 			levelInfo.sceneName = levels[i];
 			levelInfo.status = GameManager.instance.save.levelProgess[i];
 			levelInfo.animationDone = GameManager.instance.save.animationDone[i];
+			if (!GameManager.instance.save.animationDone[i])
+				playSuccess = true;
+
 			GameManager.instance.save.animationDone[i] = true;
 			levelInfo.Init();
 
 			levelBoxInst.transform.parent = transform;
 		}
+
+		if (playSuccess)
+			AudioManager.instance.Play("unlock");
+
+
 		GameManager.instance.SaveGame();
 	}
 

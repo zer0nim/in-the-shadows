@@ -21,6 +21,8 @@ public class PuzzleManager : MonoBehaviour {
 	public bool allFinished { get ; private set ;}
 	[HideInInspector]
 	public string nextLvl { get ; private set ;}
+	[HideInInspector]
+	public bool difficulty3 = false;
 	private List<float> partsDiffAngles;
 	private List<float> partsPercPos;
 
@@ -34,12 +36,15 @@ public class PuzzleManager : MonoBehaviour {
 		allFinished = false;
 		partsDiffAngles = Enumerable.Repeat(180f, parts.Count).ToList();
 		partsPercPos = Enumerable.Repeat(1f, parts.Count).ToList();
+
+
+		for (int i = 0; i < parts.Count; ++i)
+			if (parts[i].difficulty >= 3)
+				difficulty3 = true;
 	}
 
 	void Update () {
 		if (!finished) {
-			bool difficulty3 = false;
-
 			// Store angle betwwen rotations quaternion
 			for (int i = 0; i < parts.Count; ++i) {
 				// Calculate and save valid diff angle

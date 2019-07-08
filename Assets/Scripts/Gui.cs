@@ -8,7 +8,8 @@ public class Gui : HoverCursor {
 	public static Gui instance = null;
 	public Color coldColor = new Color(0.09f, 0.698f, 1); // #17B2FF
 	public Color hotColor = Color.red;
-	public Transform validPercBar;
+	public Transform validRotBar;
+	public Transform validPosBar;
 	public GameObject pausePanel;
 	public KeyCode pauseKey = KeyCode.Escape;
 	public Text title;
@@ -19,24 +20,40 @@ public class Gui : HoverCursor {
 	public string nextText = "Next";
 	public bool pauseOpened = false;
 
-	private RectTransform validPercRT;
-	private Image validPercImg;
+	private RectTransform validRotRT, validPosRT;
+	private Image validRotImg, validPosImg;
 	void Awake () {
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
 			Destroy(gameObject);
 
-		validPercRT = validPercBar.GetComponent<RectTransform>();
-		validPercImg = validPercBar.GetComponent<Image>();
+		validRotRT = validRotBar.GetComponent<RectTransform>();
+		validRotImg = validRotBar.GetComponent<Image>();
+
+		validPosRT = validPosBar.GetComponent<RectTransform>();
+		validPosImg = validPosBar.GetComponent<Image>();
+	}
+
+	void Start () {
+		if (!PuzzleManager.instance.difficulty3)
+			validPosRT.transform.parent.gameObject.SetActive(false);
 	}
 
 	void Update () {
-		if (PuzzleManager.instance.finished)
-			validPercRT.transform.parent.gameObject.SetActive(false);
-		else {
-			validPercRT.anchorMin = new Vector2(1 - PuzzleManager.instance.validPercRot, 0);
-			validPercImg.color = Color.Lerp(coldColor, hotColor, PuzzleManager.instance.validPercRot);
+		if (PuzzleManager.instance.finished) {
+			validRotRT.transform.parent.gameObject.SetActive(false);
+			validPosRT.transform.parent.gameObject.SetActive(false);
+		} else {
+			// update rotation percent bar
+			validRotRT.anchorMin = new Vector2(1 - PuzzleManager.instance.validPercRot, 0);
+			validRotImg.color = Color.Lerp(coldColor, hotColor, PuzzleManager.instance.validPercRot);
+
+			// update position percent bar
+			if (PuzzleManager.instance.difficulty3) {
+				validPosRT.anchorMin = new Vector2(1 - PuzzleManager.instance.validPercPos, 0);
+				validPosImg.color = Color.Lerp(coldColor, hotColor, PuzzleManager.instance.validPercPos);
+			}
 		}
 
 		if (Input.GetKeyDown(pauseKey)) {

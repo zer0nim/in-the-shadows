@@ -22,8 +22,10 @@ public class GameManager : CursorManager {
 	void Awake () {
 		if (instance == null)
 			instance = this;
-		else if (instance != this)
+		else if (instance != this) {
 			Destroy(gameObject);
+			return;
+		}
 
 		// Set this to not be destroyed when reloading scene
 		DontDestroyOnLoad(gameObject);

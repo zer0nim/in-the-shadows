@@ -31,8 +31,7 @@ public class Part : MonoBehaviour {
 	}
 
 	void Update () {
-		if (PuzzleManager.instance.finished)
-		{
+		if (PuzzleManager.instance.finished && !winAnimFinished) {
 			transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(validRot),
 			PuzzleManager.instance.validAnimSpeed * Time.deltaTime);
 			if (transform.rotation == Quaternion.Euler(validRot))

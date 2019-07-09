@@ -14,7 +14,6 @@ public class MainMenu : HoverCursor {
 	public Image volumeImg = null;
 	public Text volumeText = null;
 	[HideInInspector]
-	public bool volumeOn = true;
 
 	void Awake () {
 		if (volume_on == null)
@@ -26,10 +25,8 @@ public class MainMenu : HoverCursor {
 		if (volumeText == null)
 			Debug.LogError("You need to set volumeText to MainMenu script !");
 
-		volumeImg.sprite = volumeOn ? volume_on : volume_off;
-		volumeText.text = volumeOn ? volumeOnText : volumeOffText;
-
-		AudioManager.instance.toggleAudio(!volumeOn);
+		volumeImg.sprite = AudioManager.instance.volumeOn ? volume_on : volume_off;
+		volumeText.text = AudioManager.instance.volumeOn ? volumeOnText : volumeOffText;
 	}
 
 	void Update () {
@@ -54,9 +51,9 @@ public class MainMenu : HoverCursor {
 	}
 
 	public void OnSettingVolume () {
-		volumeOn = !volumeOn;
-		AudioManager.instance.toggleAudio(!volumeOn);
-		volumeImg.sprite = volumeOn ? volume_on : volume_off;
-		volumeText.text = volumeOn ? volumeOnText : volumeOffText;
+		AudioManager.instance.volumeOn = !AudioManager.instance.volumeOn;
+		AudioManager.instance.toggleAudio(!AudioManager.instance.volumeOn);
+		volumeImg.sprite = AudioManager.instance.volumeOn ? volume_on : volume_off;
+		volumeText.text = AudioManager.instance.volumeOn ? volumeOnText : volumeOffText;
 	}
 }

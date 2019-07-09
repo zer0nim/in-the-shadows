@@ -5,6 +5,7 @@ using System;
 public class AudioManager : MonoBehaviour {
 	public static AudioManager	instance = null;
 	public Sound[] sounds;
+	public bool volumeOn = true;
 
 	void Awake () {
 		if (instance == null)

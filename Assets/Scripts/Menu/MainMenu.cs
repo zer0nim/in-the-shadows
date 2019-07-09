@@ -33,10 +33,8 @@ public class MainMenu : HoverCursor {
 	}
 
 	void Update () {
-		if (Input.GetKeyDown(settingsKey)) {
-			// Toggle settings
-			SettingsBg.SetActive(!SettingsBg.active);
-		}
+		if (Input.GetKeyDown(settingsKey))
+			OnSettings();
 	}
 
 	public void OnStoryMode () {
@@ -46,6 +44,10 @@ public class MainMenu : HoverCursor {
 
 	public void OnTestMode () {
 		print("OnTestMode");
+	}
+
+	public void OnSettings () {
+		SettingsBg.SetActive(!SettingsBg.activeSelf);
 	}
 
 	public void OnSettingVolume () {

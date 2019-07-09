@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public enum LevelStatus { Locked, Unlocked, Done }
 
 public class LevelInfo : HoverCursor, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler {
+	public int			id = 0;
 	public string		sceneName;
 	public Text			textComponent;
 	public Image		textFillBox;
@@ -52,6 +53,7 @@ public class LevelInfo : HoverCursor, IPointerClickHandler, IPointerEnterHandler
 	public void OnPointerClick (PointerEventData data) {
 		if (active) {
 			GameManager.instance.lastLoadedScene = SceneManager.GetActiveScene().name;
+			GameManager.instance.crntLevelId = id;
 			SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
 		}
 	}

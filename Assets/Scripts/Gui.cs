@@ -80,6 +80,7 @@ public class Gui : HoverCursor {
 			onQuit();
 	}
 	void onNext () {
+		++GameManager.instance.crntLevelId;
 		SceneManager.LoadScene(PuzzleManager.instance.nextLvl);
 	}
 	void onQuit () {

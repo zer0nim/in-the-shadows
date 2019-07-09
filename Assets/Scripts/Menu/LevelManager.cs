@@ -29,6 +29,7 @@ public class LevelManager : MonoBehaviour {
 				pos.Set(pos.x + 1 + padding, pos.y, pos.z);
 
 				LevelInfo levelInfo = levelBoxInst.GetComponent<LevelInfo>();
+				levelInfo.id = i;
 				levelInfo.sceneName = levels[i];
 				levelInfo.status = GameManager.instance.save.levelProgess[i];
 				levelInfo.animationDone = GameManager.instance.save.animationDone[i];

@@ -88,7 +88,8 @@ public class PuzzleManager : MonoBehaviour {
 			if (validPercRot > minValidPerc
 			 && (!difficulty3 || validPercPos > minValidPerc)) {
 				finished = true;
-				if (!GameManager.instance.testMode) {
+				if (!GameManager.instance.testMode
+				&& GameManager.instance.save.levelProgess[GameManager.instance.crntLevelId] != LevelStatus.Done) {
 					// Save progess
 					nextLvl = GameManager.instance.LevelDone(SceneManager.GetActiveScene().name);
 				}

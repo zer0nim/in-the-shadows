@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class HoverCursor : MonoBehaviour {
+	[HideInInspector]
 	public bool active = true;
 
 	public void OnHover () {

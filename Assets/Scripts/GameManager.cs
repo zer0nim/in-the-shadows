@@ -17,6 +17,8 @@ public class GameManager : CursorManager {
 	[HideInInspector]
 	public string				lastLoadedScene;
 	public bool					testMode = false;
+	[HideInInspector]
+	public int					crntLevelId = 0;
 
 	public List<string> 		levels { get; private set; }
 	void Awake () {

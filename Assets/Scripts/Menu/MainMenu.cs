@@ -17,9 +17,9 @@ public class MainMenu : HoverCursor {
 	public bool volumeOn = true;
 
 	void Awake () {
-		if (volumeImg == null)
+		if (volume_on == null)
 			Debug.LogError("You need to set volume_on to MainMenu script !");
-		if (volumeImg == null)
+		if (volume_off == null)
 			Debug.LogError("You need to set volume_off to MainMenu script !");
 		if (volumeImg == null)
 			Debug.LogError("You need to set volumeImg to MainMenu script !");
@@ -38,12 +38,15 @@ public class MainMenu : HoverCursor {
 	}
 
 	public void OnStoryMode () {
+		GameManager.instance.testMode = false;
 		SceneManager.LoadScene("StoryMode", LoadSceneMode.Single);
 		GameManager.instance.SetCursor(CursorType.normal);
 	}
 
 	public void OnTestMode () {
-		print("OnTestMode");
+		GameManager.instance.testMode = true;
+		SceneManager.LoadScene("StoryMode", LoadSceneMode.Single);
+		GameManager.instance.SetCursor(CursorType.normal);
 	}
 
 	public void OnSettings () {

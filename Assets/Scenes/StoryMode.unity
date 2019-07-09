@@ -1647,6 +1647,8 @@ MonoBehaviour:
   scrollWidth: 0.2
   minScrollSpeed: 1
   maxScrollSpeed: 8
+  mainMenuKey: 27
+  deleteProgress: {fileID: 1558798042}
 --- !u!4 &1630873671
 Transform:
   m_ObjectHideFlags: 0

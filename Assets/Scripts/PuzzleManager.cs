@@ -61,10 +61,21 @@ public class PuzzleManager : MonoBehaviour {
 					testPos = new Vector3(testPos.x - (Screen.width / 2), testPos.y - (Screen.height / 2), testPos.z);
 					Vector3 validPos = parts[i].validPos.localPosition;
 
-					float widthPerc = 1 - ((Math.Max(testPos.x, validPos.x) - Math.Min(testPos.x, validPos.x))
-						/ Screen.width);
-					float heightPerc = 1 - ((Math.Max(testPos.y, validPos.y) - Math.Min(testPos.y, validPos.y))
-						/ Screen.height);
+					float widthPerc = 1;
+					float heightPerc = 1;
+
+					if (parts[i].moveHori && parts[i].moveVert) {
+						widthPerc = 1 - ((Math.Max(testPos.x, validPos.x) - Math.Min(testPos.x, validPos.x))
+							/ Screen.width);
+						heightPerc = 1 - ((Math.Max(testPos.y, validPos.y) - Math.Min(testPos.y, validPos.y))
+							/ Screen.height);
+					} else if (parts[i].moveHori && !parts[i].moveVert) {
+						widthPerc = 1 - ((Math.Max(testPos.x, validPos.x) - Math.Min(testPos.x, validPos.x))
+							/ Screen.width);
+					}  else if (!parts[i].moveHori && parts[i].moveVert) {
+						heightPerc = 1 - ((Math.Max(testPos.y, validPos.y) - Math.Min(testPos.y, validPos.y))
+							/ Screen.height);
+					}
 
 					partsPercPos[i] = Math.Min(widthPerc, heightPerc);
 				}

@@ -38,4 +38,8 @@ public class AudioManager : MonoBehaviour {
 		}
 		s.source.Play();
 	}
+
+	public void toggleAudio (bool pause) {
+		AudioListener.pause = pause;
+	}
 }

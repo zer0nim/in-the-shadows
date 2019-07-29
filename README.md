@@ -1,5 +1,7 @@
 # in-the-shadows [[42](https://www.42.fr/) project]
 
+![](../media/inTheShadowPreview.gif?raw=true)
+
 ## Project
 The goal of this project is to make a game inspired by [Shadowmatic](http://shadowmatic.com/) in `C#` and `Unity`
 
@@ -12,8 +14,6 @@ There are 4 levels of difficulty
 - One object where you can apply **horizontal** / **vertical** rotations
 - Multiples objects where you can apply **horizontal** / **vertical** rotations
 - Multiples objects where you can apply **horizontal** / **vertical** rotations and **move through space**
-
-![](../media/inTheShadowPreview.gif?raw=true)
 
 ## Controls
 

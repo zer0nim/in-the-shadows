@@ -13,9 +13,11 @@ There are 4 levels of difficulty
 - Multiples objects where you can apply **horizontal** / **vertical** rotations
 - Multiples objects where you can apply **horizontal** / **vertical** rotations and **move through space**
 
+![](../media/inTheShadowPreview.gif?raw=true)
+
 ## Controls
 
-to rotate vertically simply use `Clic` and drag
+to rotate horizontally simply use `Clic` and drag
 
 to rotate vertically use `CTRL` + `Clic` and drag
 
